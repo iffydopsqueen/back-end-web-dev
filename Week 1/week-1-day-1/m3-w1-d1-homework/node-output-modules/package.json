@@ -1,0 +1,12 @@
+{
+  "name": "node-output-modules",
+  "version": "1.0.0",
+  "description": "Node HTTP Module",
+  "main": "server_task1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server"
+  },
+  "author": "Ifeoma Eleweke",
+  "license": "ISC"
+}
