@@ -5,7 +5,7 @@
   "main": "server_task1.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "start": "node server_task1"
   },
   "author": "Ifeoma Eleweke",
   "license": "ISC"
