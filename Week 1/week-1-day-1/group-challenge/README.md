@@ -4,26 +4,26 @@ To create a `Node.js` HTTP server that reads the content of the provided HTML fi
 
 ## Steps:
 
-- Create a new project directory and navigate into it:
+1. Create a new project directory and navigate into it:
 
   ```bash
   mkdir node-file-server
   cd node-file-server
   ```
 
-- Create a `package.json` file using `npm init`. You can press **Enter** to accept the default values for most of the prompts:
+2. Create a `package.json` file using `npm init`. You can press **Enter** to accept the default values for most of the prompts:
 
   ```bash
   npm init
   ```
 
-- Install the `http` and `fs` modules, which are required to create the server and read the HTML file:
+3. Install the `http` and `fs` modules, which are required to create the server and read the HTML file:
 
   ```bash
   npm install http fs
   ```
 
-- Create an `index.js` file to write the server code:
+4. Create an `index.js` file to write the server code:
 
   ```js
   const http = require("http");
@@ -56,11 +56,11 @@ To create a `Node.js` HTTP server that reads the content of the provided HTML fi
   });
   ```
 
-- Make sure your `index.html` and `url.txt` are located in the same folder as your `node-file-server` file.
+5. Make sure your `index.html` and `url.txt` are located in the same folder as your `node-file-server` file.
 
-- Save all your changes
+6. Save all your changes
 
-- Start the `Node.js` server by running the command:
+7. Start the `Node.js` server by running the command:
 
   ```bash
   node index.js
@@ -68,7 +68,7 @@ To create a `Node.js` HTTP server that reads the content of the provided HTML fi
 
 The server will start on the specified port (in this case, `5000`).
 
-Open a web browser and go to `http://localhost:3000/`.
+Open a web browser and go to `http://localhost:5000/`.
 
 - You should see the content of the `index.html` file displayed.
 - Your `Node.js` server is now serving the HTML file as requested.
