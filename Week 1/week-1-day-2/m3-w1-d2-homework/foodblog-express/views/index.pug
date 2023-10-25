@@ -1,0 +1,93 @@
+doctype html
+html(lang="en")
+  head
+    title Food Blog
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/stylesheets/styles.css")
+    script(src="https://code.jquery.com/jquery-3.5.1.min.js")
+    script(src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js")
+    link(rel="preconnect", href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap", rel="stylesheet")
+  body
+    aside#leftside
+    aside#rightside
+    div#app
+      div#container
+        header.container
+          nav.navbar.navbar-expand-lg.navbar-light
+            div.container
+              span Food Blog
+              button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarNav", aria-controls="navbarNav", aria-expanded="false", aria-label="Toggle navigation")
+                span.navbar-toggler-icon
+              div.collapse.navbar-collapse.justify-content-end(id="navbarNav")
+                ul.navbar-nav
+                  li.nav-item
+                    a.nav-link(href="#") Home
+                  li.nav-item
+                    a.nav-link(href="#") Recipes
+                  li.nav-item
+                    a.nav-link(href="#") Lifestyles
+                  li.nav-item
+                    a.nav-link(href="#") Videos
+                  li.nav-item
+                    a.nav-link(href="#") About
+        main
+          div.row
+            div.col-md-6
+              aside#photos
+                img(v-bind:src="'images/chili.jpg", alt="White Chicken Chili", width="180")
+            h2 Comments
+            section#blogposts
+              each post, index in posts1
+                .post(:key="index")
+                  span.author
+                    img(v-bind:src="'images/profile.png'", alt='Profile Image', width='40', @click="showProfile(post.author)")
+                    | {{post.author}}
+                  | —
+                  span.date {{post.date}}
+                  span.reply REPLY
+                  p {{post.content}}
+              each post, index in posts2 
+                .post(:key="index")
+                  span.author
+                    img(v-bind:src="'images/profile.png'", alt='Profile Image', width='40', @click="showProfile(post.author)")
+                    | {{post.author}}
+                  | —
+                  span.date {{post.date}}
+                  span.reply REPLY
+                  p {{post.content}}
+              each post, index in posts3 
+                .post(:key="index")
+                  span.author
+                    img(v-bind:src="'images/profile.png'", alt='Profile Image', width='40', @click="showProfile(post.author)")
+                    | {{post.author}}
+                  | —
+                  span.date {{post.date}}
+                  span.reply REPLY
+                  p {{post.content}}
+              each post, index in posts4
+                .post(:key="index")
+                  span.author
+                    img(v-bind:src="'images/profile.png'", alt='Profile Image', width='40', @click="showProfile(post.author)")
+                    | {{post.author}}
+                  | —
+                  span.date {{post.date}}
+                  span.reply REPLY
+                  p {{post.content}}
+        div.profile-box#profileBox
+          h2
+            | {{selectedAuthor}}
+            span.aria-hidden("true", @click="closeProfileBox") &times;
+          p
+            span(style="font-weight: bold;") Foodie Level:
+            | {{foodieLevel}}
+            | {{bio}}
+          button(@click="closeProfileBox") Close
+        footer
+          | &copy; Copyright FOOD BLOG
+    script(src="/javascripts/vue.js")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
