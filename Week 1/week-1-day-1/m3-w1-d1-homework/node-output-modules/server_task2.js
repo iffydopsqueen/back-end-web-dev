@@ -12,6 +12,7 @@ var port = 5000;
 // which takes a callback function with request and response parameters
 
 var server = http.createServer((req, res) => {
+    console.log(`Request for ${req.url} by method ${req.method}`);
 
     // Get the URL from the request
     var url = req.url;
@@ -33,17 +34,19 @@ var server = http.createServer((req, res) => {
     if (filename) {
         fs.readFile(path.join(__dirname, filename), (err, data) => {
             if (err) {
-                res.statusCode = 500;    // Internal Server Error
-                res.end('Error loading the file');
+                res.statusCode = 500;    
+                res.end(`<html><body><h1>500 Error: Internal Server Error</h1><p>Error loading the file</p></body></html>`);
+                //res.end('Error loading the file');
             } else {
-                res.statusCode = 200;   // OK
+                res.statusCode = 200;  
                 res.end(data);
             }
         });
     } else {
         // If none of the above URLs match, respond with a "Not Found" message
-        res.statusCode = 404;   // Not Found
-        res.end('Not Found');
+        res.statusCode = 404;   
+        res.end(`<html><body><h1>404 Error: Not found</h1><p>"...${url}" not found</p></body></html>`);
+        //res.end('Not Found');
     }
 });
 

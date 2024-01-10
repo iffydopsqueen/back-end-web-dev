@@ -48,8 +48,8 @@ Follow these steps to perform the task:
 {
   ...
   "scripts": {
-    "start": "node server_task1.js", // Add this line
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server_task1.js" // Add this line
   },
 }
 ```
@@ -78,11 +78,11 @@ Follow these steps to perform the task:
        // If the URL is '/', serve the "index.html" file
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Welcome to the Home page</h1></body></html>`);
-     } else if (url === "/about.html") {
+     } else if (url === "/about") {
        // If the URL is '/about.html', serve the "about.html" file.
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Welcome to the About page</h1></body></html>`);
-     } else if (url === "/contact.html") {
+     } else if (url === "/contact") {
        // If the URL is '/contact.html', serve the "contact.html" file.
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Contact Us</h1></body></html>`);
@@ -107,7 +107,7 @@ Follow these steps to perform the task:
 7. Start the `Node.js` server by running the command:
 
    ```bash
-   node server_task1.js
+   node server_task1
 
    # OR
    npm start
@@ -118,8 +118,8 @@ The server will start on the specified port (in this case, `5000`).
 Open a web browser and go to
 
 - `http://localhost:5000/` for the **Home** page,
-- `http://localhost:5000/about.html` for the **About** page and
-- `http://localhost:5000/contact.html` for the **Contact** page.
+- `http://localhost:5000/about` for the **About** page and
+- `http://localhost:5000/contact` for the **Contact** page.
 
 You should see the content of your respective files displayed.
 
@@ -141,7 +141,7 @@ Follow these steps to perform the task:
     touch node-output-modules/contact.html
     ```
 
-2.  Add this line to your `package.json` file or simply just change the name of the script to `server_task2.js`
+2.  Add this line to your `package.json` file or simply just change the name of the script command to `server_task2.js`
 
     ```json
     {
@@ -152,7 +152,7 @@ Follow these steps to perform the task:
       "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server_task1",
-        "server-task2": "node server_task2.js"
+        "server-task2": "node server_task2.js" // Add this line
       },
       "author": "Ifeoma",
       "license": "ISC"
@@ -237,7 +237,7 @@ This allows you to manage and run multiple `Node.js` scripts from your `package.
 6. Start the `Node.js` server by running the command:
 
    ```bash
-   node server_task2.js
+   node server_task2
 
    # OR
    npm run server_task2

@@ -64,6 +64,10 @@ To create a `Node.js` HTTP server that reads the content of the provided HTML fi
 
   ```bash
   node index.js
+
+  # OR
+
+  npm start # if the "start" command was specified in the `package.json` file
   ```
 
 The server will start on the specified port (in this case, `5000`).

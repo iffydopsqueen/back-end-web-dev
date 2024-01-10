@@ -8,6 +8,7 @@ var port = 5000;
 // which takes a callback function with request and response parameters
 
 var server = http.createServer((req, res) => {
+    console.log(`Request for ${req.url} by method ${req.method}`);
 
     // Get the URL from the request object
     var url = req.url;
@@ -17,25 +18,25 @@ var server = http.createServer((req, res) => {
 
     // Check the URL and respond accordingly
     if (url === '/') {
-
         // If the URL is '/', serve the "index.html" file
         res.statusCode = 200;  // 200 code makes sure everything is ok
-        res.end(`<html><body><h1>Welcome to the Home page</h1></body></html>`);
-    } else if (url === '/about.html') {
+        res.end(`<html><body><h1>Home page.</h1></body></html>`);
 
+    } else if (url === '/about') {
         // If the URL is '/about.html', serve the "about.html" file.
         res.statusCode = 200;  // 200 code makes sure everything is ok
-        res.end(`<html><body><h1>Welcome to the About page</h1></body></html>`);
-    } else if (url === '/contact.html') {
+        res.end(`<html><body><h1>About page.</h1></body></html>`);
 
+    } else if (url === '/contact') {
         // If the URL is '/contact.html', serve the "contact.html" file.
         res.statusCode = 200;   // 200 code makes sure everything is ok
-        res.end(`<html><body><h1>Contact Us</h1></body></html>`);
-    } else {
+        res.end(`<html><body><h1>Contact Page.</h1></body></html>`);
 
+    } else {
         // If none of the above URL matches, respond with "Invalid Request!".
         res.statusCode = 404; // Not Found
         res.end(`<html><body><h1 style="color: red">Invalid Request!</h1></body></html>`);
+        
     }
 });
 
