@@ -79,11 +79,11 @@ Follow these steps to perform the task:
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Welcome to the Home page</h1></body></html>`);
      } else if (url === "/about") {
-       // If the URL is '/about.html', serve the "about.html" file.
+       // If the URL is '/about', serve the "about" file.
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Welcome to the About page</h1></body></html>`);
      } else if (url === "/contact") {
-       // If the URL is '/contact.html', serve the "contact.html" file.
+       // If the URL is '/contact', serve the "contact" file.
        res.statusCode = 200; // 200 code makes sure everything is ok
        res.end(`<html><body><h1>Contact Us</h1></body></html>`);
      } else {
@@ -215,13 +215,13 @@ This allows you to manage and run multiple `Node.js` scripts from your `package.
            res.statusCode = 500; // Internal Server Error
            res.end("Error loading the file");
          } else {
-           res.statusCode = 200; // OK
+           res.statusCode = 200;
            res.end(data);
          }
        });
      } else {
        // If none of the above URLs match, respond with a "Not Found" message
-       res.statusCode = 404; // Not Found
+       res.statusCode = 404;
        res.end("Not Found");
      }
    });
