@@ -64,11 +64,15 @@ To create a `Node.js` HTTP server that reads the content of the provided HTML fi
 
   ```bash
   node index.js
+
+  # OR
+
+  npm start # if the "start" command was specified in the `package.json` file
   ```
 
 The server will start on the specified port (in this case, `5000`).
 
-Open a web browser and go to `http://localhost:3000/`.
+Open a web browser and go to `http://localhost:5000/`.
 
 - You should see the content of the `index.html` file displayed.
 - Your `Node.js` server is now serving the HTML file as requested.
