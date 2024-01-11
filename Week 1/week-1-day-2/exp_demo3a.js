@@ -6,7 +6,7 @@ router.get('/home', function(req, res) {
 });
 
 router.post('/home', function(req, res) {
-    res.send("You just call the post method at '/hello'!\n");
+    res.send("You just called the post method at '/hello'!\n");
 });
 
 //export this router to use in exp-demo3b.js
