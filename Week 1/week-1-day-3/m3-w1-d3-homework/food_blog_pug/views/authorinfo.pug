@@ -1,0 +1,13 @@
+#info_box(v-for='post in posts', v-if='post.thisBox')
+  p.closeBtn.closeBtnP(v-on:click="$emit('close', post.thisBox = false)") &#x2716;
+  #info_title {{ post.name }}
+  #info_foodie
+    span Foodie Level: 
+    | {{ post.foodielevel }}
+  #info_bio
+    span
+      | Bio:
+      br
+    | {{ post.bio }}
+  button.closeBtn.closeBtnB(v-on:click="$emit('close', post.thisBox = false)") Close
+  p#close_info

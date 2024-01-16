@@ -49,23 +49,22 @@ Follow these steps to perform the task:
    ```js
    var express = require("express");
    var path = require("path");
+   var serverRouter = require("./routes/server");
    var app = express();
 
-   // Set the views directory and use Pug as the view engine
+   app.use("/public", express.static(path.join(__dirname, "public")));
+
    app.set("views", path.join(__dirname, "views"));
    app.set("view engine", "pug");
 
-   // Serve static files (css, js, images)
-   app.use(express.static(path.join(__dirname, "public")));
+   app.use("/components", serverRouter);
 
-   // Define routes
    app.get("/", function (req, res) {
      res.render("food_blog");
    });
 
-   // Start the server
    var hostname = "localhost";
-   var port = process.env.PORT || 3000;
+   var port = 3000;
 
    app.listen(port, function () {
      console.log(`Server is running on http://${hostname}:${port}`);
@@ -86,11 +85,12 @@ Follow these steps to perform the task:
    |   |   |-- chili.jpg
    |   |   |-- profile.png
    |-- views/
-   |   |-- components/
-   |   |   |-- headcomp.pug
-   |   |   |-- blogtitle.pug
-   |   |   |-- authorinfo.pug
+   |   |-- headcomp.pug
+   |   |-- blogtitle.pug
+   |   |-- authorinfo.pug
    |   |-- food_blog.pug
+   |-- routes/
+   |   |-- server.js
    |-- package.json
    ```
 
@@ -100,21 +100,15 @@ Here's an online tool that can help you convert your HTML file to Pug
 
 [HTML-to-Pug](https://html-to-pug.com/)
 
-6.  We are required to use the `include` and `components` technique, so we will break our `pug` files into components.
+6.  We are required to use the `include` and `components` technique, so we will break our `pug` files into simple templates.
 
-    - First, create a `components` folder in the `views` directory
+    - Let's create these **pug** files:
 
       ```bash
-      mkdir views/components
+      touch views/headcomp.pug
+      touch views/blogtitle.pug
+      touch views/authorinfo.pug
       ```
-
-      - In the `components` directory, create the following files:
-
-        ```bash
-        touch views/components/headcomp.pug
-        touch views/components/blogtitle.pug
-        views/components/authorinfo.pug
-        ```
 
     Here's their respective contents:
 
@@ -152,42 +146,80 @@ Here's an online tool that can help you convert your HTML file to Pug
 
         ```pug
         doctype html
-        head
-        title Food Blog
-        meta(charset='UTF-8')
-        meta(name='viewport' content='width=device-width, initial-scale=1.0')
-        script(src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js')
-        link(rel='preconnect' href='https://fonts.gstatic.com')
-        link(href='https://fonts.googleapis.com/css2?family=Sacramento&display=swap' rel='stylesheet')
-        link(rel='stylesheet' href='../public/css/styles.css')
-        aside#leftside
-        aside#rightside
-        #container
-        header
-            include components/headcomp.pug
-        main
-            aside#photos
-            img(src='../public/images/chili.jpg' alt='White Chicken Chili' width='180')
-            h2
-            include components/blogtitle.pug
-            section#blogposts
-            ul
-                li#posts(v-for='post in posts')
-                span.profile
-                    img(v-bind:src='post.profilepic' v-on:click='authorinfo(posts, post)')
-                span.author {{ post.name }}
-                |  &mdash;
-                span.date {{ post.date }}
-                span.reply {{ post.reply }}
-                p
-                    | {{ post.message }}
-                include components/authorinfo.pug
-        footer
-            | &copy; Copyright FOOD BLOG
-        script(src='../public/js/vue.js')
+        html(lang='en')
+          head
+            title Food Blog
+            meta(charset='UTF-8')
+            meta(name='viewport', content='width=device-width, initial-scale=1.0')
+            script(src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js')
+            link(rel='preconnect', href='https://fonts.gstatic.com')
+            link(href='https://fonts.googleapis.com/css2?family=Sacramento&display=swap', rel='stylesheet')
+            link(rel='stylesheet', href='../public/css/styles.css')
+          body
+            aside#leftside
+            aside#rightside
+            #container
+              header
+                include ./headcomp.pug
+              main
+                aside#photos
+                  img(src='../public/images/chili.jpg', alt='White Chicken Chili', width='180')
+                h2
+                  include ./blogtitle.pug
+                section#blogposts
+                  ul
+                    li#posts(v-for='post in posts')
+                      span.profile
+                        img(v-bind:src='post.profilepic', v-on:click='authorinfo(posts, post)')
+                      span.author {{ post.name }}
+                      |  &mdash;
+                      span.date {{ post.date }}
+                      span.reply {{ post.reply }}
+                      p
+                        | {{ post.message }}
+                    include ./authorinfo.pug
+              footer
+                | &copy; Copyright FOOD BLOG
+            script(src='../public/js/vue.js')
         ```
 
-7.  We can now test our Express application to be sure its running properly.
+7.  Now let's add the following content to our `server.js` file:
+
+    Content of `server.js`:
+
+    ```js
+    var express = require("express");
+    var router = express.Router();
+
+    router.get("/components", function (req, res) {
+      res.render("food_blog");
+    });
+
+    module.exports = router;
+    ```
+
+8.  In your `vue.js` file, make sure to adjust the file paths of the `profilepic`.
+
+    - Change each of the `posts` to have a file path of `'/public/images/profile.png'` instead of `'images/profile.png'`.
+
+9.  Remember, we were told to use the `components` technique in our application.
+
+    To do this,
+
+    - set up a route for `'/components'` in our `server.js` file
+
+    - in your `app.js` file, include the `router` from `server.js` and use it as a middleware for the `/components` route.
+
+    Here's how we add that to our `app.js` file:
+
+    ```js
+    var serverRouter = require("./routes/server"); // Import the server router
+
+    // Use the serverRouter for the '/components' route
+    app.use("/components", serverRouter);
+    ```
+
+10. We can now test our Express application to be sure its running properly.
 
     Start the app using the following command:
 
@@ -198,7 +230,7 @@ Here's an online tool that can help you convert your HTML file to Pug
     node app.js   # need to be in the 'food_blog' folder
     ```
 
-8.  Your Express app should now be running on the specified port.
+11. Your Express app should now be running on the specified port.
 
     To access your application, open the web browser and navigate to
 
