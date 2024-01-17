@@ -114,74 +114,74 @@ Here's an online tool that can help you convert your HTML file to Pug
 
     Content of `headcomp.pug`
 
-         ```bash
-         span Food Blog
-         ```
+    ```bash
+    span Food Blog
+    ```
 
     Content of `blogtitle.pug`
 
-         ```bash
-         span Comments
-         ```
+    ```bash
+    span Comments
+    ```
 
     Content of `authorinfo.pug`
 
-         ```pug
-         #info_box(v-for='post in posts' v-if='post.thisBox')
-         p.closeBtn.closeBtnP(v-on:click="$emit('close', post.thisBox = false)") &#x2716;
-         #info_title {{ post.name }}
-         #info_foodie
-             span Foodie Level:
-             | {{ post.foodielevel }}
-         #info_bio
-             span
-             | Bio:
-             br
-             | {{ post.bio }}
-         button.closeBtn.closeBtnB(v-on:click="$emit('close', post.thisBox = false)") Close
-         p#close_info
-         ```
+    ```pug
+    #info_box(v-for='post in posts' v-if='post.thisBox')
+    p.closeBtn.closeBtnP(v-on:click="$emit('close', post.thisBox = false)") &#x2716;
+    #info_title {{ post.name }}
+    #info_foodie
+        span Foodie Level:
+        | {{ post.foodielevel }}
+    #info_bio
+        span
+        | Bio:
+        br
+        | {{ post.bio }}
+    button.closeBtn.closeBtnB(v-on:click="$emit('close', post.thisBox = false)") Close
+    p#close_info
+    ```
 
     Content of `food_blog.pug`
 
-        ```pug
-        doctype html
-        html(lang='en')
-          head
-            title Food Blog
-            meta(charset='UTF-8')
-            meta(name='viewport', content='width=device-width, initial-scale=1.0')
-            script(src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js')
-            link(rel='preconnect', href='https://fonts.gstatic.com')
-            link(href='https://fonts.googleapis.com/css2?family=Sacramento&display=swap', rel='stylesheet')
-            link(rel='stylesheet', href='../public/css/styles.css')
-          body
-            aside#leftside
-            aside#rightside
-            #container
-              header
-                include ./headcomp.pug
-              main
-                aside#photos
-                  img(src='../public/images/chili.jpg', alt='White Chicken Chili', width='180')
-                h2
-                  include ./blogtitle.pug
-                section#blogposts
-                  ul
-                    li#posts(v-for='post in posts')
-                      span.profile
-                        img(v-bind:src='post.profilepic', v-on:click='authorinfo(posts, post)')
-                      span.author {{ post.name }}
-                      |  &mdash;
-                      span.date {{ post.date }}
-                      span.reply {{ post.reply }}
-                      p
-                        | {{ post.message }}
-                    include ./authorinfo.pug
-              footer
-                | &copy; Copyright FOOD BLOG
-            script(src='../public/js/vue.js')
-        ```
+    ```pug
+    doctype html
+    html(lang='en')
+      head
+        title Food Blog
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        script(src='https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js')
+        link(rel='preconnect', href='https://fonts.gstatic.com')
+        link(href='https://fonts.googleapis.com/css2?family=Sacramento&display=swap', rel='stylesheet')
+        link(rel='stylesheet', href='../public/css/styles.css')
+      body
+        aside#leftside
+        aside#rightside
+        #container
+          header
+            include ./headcomp.pug
+          main
+            aside#photos
+              img(src='../public/images/chili.jpg', alt='White Chicken Chili', width='180')
+            h2
+              include ./blogtitle.pug
+            section#blogposts
+              ul
+                li#posts(v-for='post in posts')
+                  span.profile
+                    img(v-bind:src='post.profilepic', v-on:click='authorinfo(posts, post)')
+                  span.author {{ post.name }}
+                  |  &mdash;
+                  span.date {{ post.date }}
+                  span.reply {{ post.reply }}
+                  p
+                    | {{ post.message }}
+                include ./authorinfo.pug
+          footer
+            | &copy; Copyright FOOD BLOG
+        script(src='../public/js/vue.js')
+    ```
 
 7.  Now let's add the following content to our `server.js` file:
 
